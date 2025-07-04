@@ -8,14 +8,15 @@
 #define MAXIMO_DE_CLIENTES 10
 
 
-
+// Lista Encadeada:Permite criar e remover clientes dinamicamente
 bool aberto = true;
-
 typedef struct Cliente {
     int identificador;
     struct Cliente* proximo;
 } Cliente;
-
+//Cada "cliente" é um nó que tem dois dados:
+//O ID do cliente (quem ele é).
+//Um ponteiro para o próximo cliente na fila.
 
 Cliente* inicio = NULL;
 Cliente* fim = NULL;
