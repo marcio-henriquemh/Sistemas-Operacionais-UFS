@@ -21,12 +21,21 @@ typedef struct Cliente {
 Cliente* inicio = NULL;
 Cliente* fim = NULL;
 
+// inicio  e fim da fila
+
 int total_clientes = 0;
 int proximo_identificador = 1;
 
 pthread_mutex_t mutex_fila = PTHREAD_MUTEX_INITIALIZER;
+
+//semafaro 
+//Um semáforo é como um sinal de “tem cliente”.
+//Se não tem cliente, o barbeiro espera.
+//Quando um cliente chega, ele libera o sinal, e o barbeiro acorda para atender.
+
 sem_t sem_clientes;
 
+//adiciona cliente na fila
 void adicionar_cliente(int identificador) {
     Cliente* novo = malloc(sizeof(Cliente));
     novo->identificador = identificador;
@@ -42,6 +51,7 @@ void adicionar_cliente(int identificador) {
     total_clientes++;
 }
 
+//remove cliente.
 int remover_cliente() {
     if (inicio == NULL) return -1;
 
